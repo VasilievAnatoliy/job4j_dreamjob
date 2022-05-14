@@ -26,6 +26,10 @@ public class PostStore {
         return INST;
     }
 
+    public void add(Post post) {
+        posts.put(post.getId(), new Post(post.getId(), post.getName(), post.getDescription()));
+    }
+
     public Collection<Post> findAll() {
         return posts.values();
     }
