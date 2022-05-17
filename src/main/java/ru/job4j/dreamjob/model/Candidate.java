@@ -51,6 +51,10 @@ public class Candidate {
         return created;
     }
 
+    public void setCreated(String created) {
+        this.created = created;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
