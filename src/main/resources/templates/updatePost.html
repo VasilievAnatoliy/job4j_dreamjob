@@ -19,12 +19,12 @@
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
             crossorigin="anonymous"></script>
 
-    <title>Добавить вакансию</title>
+    <title>Редактирование вакансии</title>
 </head>
 <body>
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Работа мечты<small th:text="${user}"></small></a>
+        <a class="navbar-brand" href="#">Работа мечты <small th:text="${user}"></small></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -33,30 +33,32 @@
             <div class="navbar-nav">
                 <a class="nav-item nav-link" th:href="@{/index}">Главная</a>
                 <a class="nav-item nav-link" th:href="@{/posts}">Вакансии</a>
-                <a class="nav-item nav-link active" href="#">Добавить вакансию <span
+                <a class="nav-item nav-link active" th:href="@{/addPost}">Добавить вакансию</a>
+                <a class="nav-item nav-link active" href="#">Редактирование вакансии <span
                         class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link" th:href="@{/candidates}">Кандидаты</a>
                 <a class="nav-item nav-link" th:href="@{/formAddCandidate}">Добавить кандидата</a>
             </div>
         </div>
     </nav>
-    <div class="row pt -3">
+    <div class="row pt-3">
         <div class="card" style="width: 100%">
             <div class="card-header">
-                Новая вакансия
+                Редактирование вакансии
             </div>
             <div class="card-body">
-                <form th:action="@{/createPost}" method="POST">
-                    <input type="hidden" name="id" value="0"/>
+                <form th:action="@{/updatePost}" method="POST" th:object="${post}">
+                    <input type="hidden" name="id" th:field="*{id}"/>
                     <div class="form-group">
-                        <label>Имя
-                            <input type="text" class="form-control" name="name" id="name">
+                        <label for="name">Имя
+                        <input type="text" class="form-control" name="name" id="name" th:field="*{name}">
                         </label>
                     </div>
                     <div class="form-group">
                         <label>Описание вакансии
-                            <input type="text" class="form-control" size="40" name="description" id="description">
-                            <input type="hidden" name="created" id="created"/>
+                            <input type="text" class="form-control" size="40" name="description" id="description"
+                                   th:field="*{description}">
+                            <input type="hidden" name="created" id="created" th:field="*{created}"/>
                         </label>
                     </div>
                     <button type="submit" class="btn btn-primary">Сохранить</button>
