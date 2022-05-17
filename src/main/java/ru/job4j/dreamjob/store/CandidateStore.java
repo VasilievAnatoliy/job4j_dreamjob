@@ -1,5 +1,6 @@
 package ru.job4j.dreamjob.store;
 
+import org.springframework.stereotype.Repository;
 import ru.job4j.dreamjob.model.Candidate;
 
 import java.time.LocalDate;
@@ -11,18 +12,13 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Хранилище заявок кандидатов(Candidate) - ConcurrentHashMap.
- * Синглтон.
+ * CandidateStore - Слой персистенции.
  */
+
+@Repository
 public class CandidateStore {
-
-    private static final CandidateStore INST = new CandidateStore();
-
     private final Map<Integer, Candidate> candidates = new ConcurrentHashMap<>();
     private final AtomicInteger count = new AtomicInteger(0);
-
-    public static CandidateStore instOf() {
-        return INST;
-    }
 
     public void add(Candidate candidate) {
         candidate.setId(count.incrementAndGet());
