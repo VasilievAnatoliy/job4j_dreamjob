@@ -11,6 +11,7 @@ public class Candidate {
     private int id;
     private String name;
     private String description;
+    private byte[] photo;
     private String created;
     private boolean visible;
     private City city;
@@ -18,10 +19,11 @@ public class Candidate {
     public Candidate() {
     }
 
-    public Candidate(int id, String name, String description, City city) {
+    public Candidate(int id, String name, String description, byte[] photo, City city) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.photo = photo;
         this.created = LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
         this.city = city;
     }
@@ -48,6 +50,14 @@ public class Candidate {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public byte[] getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(byte[] photo) {
+        this.photo = photo;
     }
 
     public String getCreated() {

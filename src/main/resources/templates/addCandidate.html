@@ -46,7 +46,7 @@
         Новый кандидат
       </div>
       <div class="card-body">
-        <form th:action="@{/createCandidate}" method="POST">
+        <form th:action="@{/createCandidate}" method="POST" enctype="multipart/form-data">
           <input type="hidden" name="id" value="0">
           <div class="form-group">
             <label>Имя
@@ -57,6 +57,11 @@
             <label>Описание кандидата
               <input type="text" class="form-control" size="40" name="description" id="description">
               <input type="hidden" name="created" id="created"/>
+            </label>
+          </div>
+          <div class="form-group">
+            <label for="name">Фотография
+            <input type="file" class="form-control" name="file" id="file">
             </label>
           </div>
           <div class="form-group">
