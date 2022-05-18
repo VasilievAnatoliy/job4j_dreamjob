@@ -33,7 +33,7 @@
             <div class="navbar-nav">
                 <a class="nav-item nav-link" th:href="@{/index}">Главная</a>
                 <a class="nav-item nav-link" th:href="@{/posts}">Вакансии</a>
-                <a class="nav-item nav-link active" th:href="@{/addPost}">Добавить вакансию</a>
+                <a class="nav-item nav-link active" th:href="@{/formAddPost}">Добавить вакансию</a>
                 <a class="nav-item nav-link active" href="#">Редактирование вакансии <span
                         class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link" th:href="@{/candidates}">Кандидаты</a>
@@ -60,6 +60,11 @@
                                    th:field="*{description}">
                             <input type="hidden" name="created" id="created" th:field="*{created}"/>
                         </label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" name="visible" class="form-check-input" id="visible"
+                               th:field="*{visible}">
+                        <label class="form-check-label" for="visible">Опубликовать</label>
                     </div>
                     <button type="submit" class="btn btn-primary">Сохранить</button>
                 </form>
