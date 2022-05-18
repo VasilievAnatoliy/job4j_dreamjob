@@ -14,15 +14,17 @@ public class Post implements Serializable {
     private String description;
     private String created;
     private boolean visible;
+    private City city;
 
     public Post() {
     }
 
-    public Post(int id, String name, String description) {
+    public Post(int id, String name, String description, City city) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.created = LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        this.city = city;
     }
 
     public int getId() {
@@ -63,6 +65,14 @@ public class Post implements Serializable {
 
     public void setVisible(boolean visible) {
         this.visible = visible;
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
     }
 
     @Override
