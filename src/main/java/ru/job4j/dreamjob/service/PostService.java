@@ -3,20 +3,25 @@ package ru.job4j.dreamjob.service;
 import net.jcip.annotations.ThreadSafe;
 import org.springframework.stereotype.Service;
 import ru.job4j.dreamjob.model.Post;
-import ru.job4j.dreamjob.store.PostStore;
+import ru.job4j.dreamjob.store.PostDbStore;
 
-import java.util.Collection;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 @Service
 @ThreadSafe
 public class PostService {
-    private final PostStore store;
+    private final PostDbStore store;
+    private final CityService cityService;
 
-    public PostService(PostStore store) {
+    public PostService(PostDbStore store, CityService cityService) {
         this.store = store;
+        this.cityService = cityService;
     }
 
     public void add(Post post) {
+        post.setCreated(LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
         store.add(post);
     }
 
@@ -28,7 +33,13 @@ public class PostService {
         store.update(post);
     }
 
-    public Collection<Post> findAll() {
-        return store.findAll();
+    public List<Post> findAll() {
+        List<Post> posts = store.findAll();
+        posts.forEach(
+                post -> post.setCity(
+                        cityService.findById(post.getCity().getId())
+                )
+        );
+        return posts;
     }
 }

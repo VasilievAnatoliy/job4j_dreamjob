@@ -4,8 +4,6 @@ import net.jcip.annotations.ThreadSafe;
 import org.springframework.stereotype.Repository;
 import ru.job4j.dreamjob.model.Post;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -24,7 +22,6 @@ public class PostStore {
 
     public void add(Post post) {
         post.setId(count.incrementAndGet());
-        post.setCreated(LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
         posts.put(post.getId(), post);
     }
 

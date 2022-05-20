@@ -19,11 +19,12 @@ public class Post implements Serializable {
     public Post() {
     }
 
-    public Post(int id, String name, String description, City city) {
+    public Post(int id, String name, String description, String created, boolean visible, City city) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.created = LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        this.created = created;
+        this.visible = visible;
         this.city = city;
     }
 
