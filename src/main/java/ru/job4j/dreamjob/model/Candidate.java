@@ -19,12 +19,14 @@ public class Candidate {
     public Candidate() {
     }
 
-    public Candidate(int id, String name, String description, byte[] photo, City city) {
+    public Candidate(int id, String name, String description, byte[] photo,
+                     String created, Boolean visible, City city) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.photo = photo;
-        this.created = LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        this.created = created;
+        this.visible = visible;
         this.city = city;
     }
 

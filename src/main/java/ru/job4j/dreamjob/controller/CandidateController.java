@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import ru.job4j.dreamjob.model.Candidate;
+import ru.job4j.dreamjob.model.Post;
 import ru.job4j.dreamjob.service.CandidateService;
 import ru.job4j.dreamjob.service.CityService;
 
@@ -60,7 +61,9 @@ public class CandidateController {
 
     @GetMapping("/formUpdateCandidate/{candidateId}")
     public String formUpdateCandidate(Model model, @PathVariable("candidateId") int id) {
-        model.addAttribute("candidate", service.findById(id));
+        Candidate candidate = service.findById(id);
+        candidate.setCity(cityService.findById(candidate.getCity().getId()));
+        model.addAttribute("candidate", candidate);
         model.addAttribute("cities", cityService.getAllCities());
         return "updateCandidate";
     }

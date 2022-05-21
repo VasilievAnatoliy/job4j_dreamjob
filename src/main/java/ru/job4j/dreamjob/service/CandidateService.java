@@ -3,20 +3,25 @@ package ru.job4j.dreamjob.service;
 import net.jcip.annotations.ThreadSafe;
 import org.springframework.stereotype.Service;
 import ru.job4j.dreamjob.model.Candidate;
-import ru.job4j.dreamjob.store.CandidateStore;
+import ru.job4j.dreamjob.store.CandidateDbStore;
 
-import java.util.Collection;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 @Service
 @ThreadSafe
 public class CandidateService {
-    private final CandidateStore store;
+    private final CandidateDbStore store;
+    private final CityService cityService;
 
-    public CandidateService(CandidateStore store) {
+    public CandidateService(CandidateDbStore store, CityService cityService) {
         this.store = store;
+        this.cityService = cityService;
     }
 
     public void add(Candidate candidate) {
+        candidate.setCreated(LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
         store.add(candidate);
     }
 
@@ -28,7 +33,13 @@ public class CandidateService {
         store.update(candidate);
     }
 
-    public Collection<Candidate> findAll() {
-        return store.findAll();
+    public List<Candidate> findAll() {
+        List<Candidate> candidates = store.findAll();
+        candidates.forEach(
+                candidate -> candidate.setCity(
+                        cityService.findById(candidate.getCity().getId())
+                )
+        );
+        return candidates;
     }
 }

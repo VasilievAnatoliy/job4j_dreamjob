@@ -24,7 +24,6 @@ public class CandidateStore {
 
     public void add(Candidate candidate) {
         candidate.setId(count.incrementAndGet());
-        candidate.setCreated(LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
         candidates.put(candidate.getId(), candidate);
     }
 
