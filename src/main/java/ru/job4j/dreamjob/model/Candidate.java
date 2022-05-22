@@ -2,6 +2,7 @@ package ru.job4j.dreamjob.model;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.Objects;
 
 /**
@@ -95,11 +96,18 @@ public class Candidate {
             return false;
         }
         Candidate candidate = (Candidate) o;
-        return getId() == candidate.getId();
+        return getId() == candidate.getId() && isVisible() == candidate.isVisible()
+                && Objects.equals(getName(), candidate.getName())
+                && Objects.equals(getDescription(), candidate.getDescription())
+                && Arrays.equals(getPhoto(), candidate.getPhoto())
+                && Objects.equals(getCreated(), candidate.getCreated())
+                && Objects.equals(getCity(), candidate.getCity());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId());
+        int result = Objects.hash(getId(), getName(), getDescription(), getCreated(), isVisible(), getCity());
+        result = 31 * result + Arrays.hashCode(getPhoto());
+        return result;
     }
 }
