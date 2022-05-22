@@ -26,7 +26,7 @@ public class CandidateDbStoreTest {
 
     @Before
     public void newPost() {
-        candidate1 = new Candidate(0, "Petr", "Java Senior", new byte[]{1,2,3,4},
+        candidate1 = new Candidate(0, "Petr", "Java Senior", new byte[]{1, 2, 3, 4},
                 "10-10-2022", true, new City(1, null));
         candidate2 = new Candidate(1, "Maxim", "C++ Middle", new byte[]{5, 6, 7},
                 "10-10-2022", false, new City(1, null));
