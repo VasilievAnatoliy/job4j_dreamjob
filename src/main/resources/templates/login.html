@@ -22,7 +22,8 @@
     <div class="row">
         <div class="card" style="width: 100%">
             <div class="card-header">
-                Авторизация
+                <h4>Авторизация</h4>
+                <a>Только авторизованный пользователь может просматривать и добавлять: вакансии, кандидатов</a>
             </div>
             <div class="card-body">
                 <div th:if="${fail}" class="alert alert-danger" role="alert">
@@ -42,6 +43,10 @@
                         </label>
                     </div>
                     <button type="submit" class="btn btn-primary">Войти</button>
+                </form>
+                <br>
+                <form th:action="@{/formAddUser}">
+                    <button type="submit" class="btn btn-primary">Регистрация</button>
                 </form>
             </div>
         </div>

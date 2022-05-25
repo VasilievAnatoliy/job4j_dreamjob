@@ -46,7 +46,7 @@
             <div class="card-body">
                 <form th:action="@{/formAddUser}">
                     <div class="form-group">
-                        <p th:text="${message}"/>
+                        <p> Пользователь с такой почтой уже существует</p>
                     </div>
                     <button type="submit" class="btn btn-primary">Изменить</button>
                 </form>

@@ -29,15 +29,18 @@ public class UserController {
     }
 
     @PostMapping("/registration")
-    public String registration(Model model, @ModelAttribute User user) {
+    public String registration(@ModelAttribute User user) {
         Optional<User> regUser = service.add(user);
         if (regUser.isEmpty()) {
-            model.addAttribute("message", "Пользователь с такой почтой уже существует");
-            return "fail";
+            return "redirect:/fail";
         }
         return "redirect:/success";
     }
 
+    @GetMapping("/fail")
+        public String fail() {
+        return "fail";
+    }
 
     @GetMapping("/success")
     public String success() {
